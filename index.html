@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cliente Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header><h1>Cliente Manager</h1><p>Sistema de Cadastro de Clientes</p></header>
+<main class="container">
+<section class="cards">
+<div class="card"><h2 id="totalClientes">0</h2><span>Total</span></div>
+<div class="card"><h2 id="clientesHoje">0</h2><span>Hoje</span></div>
+<div class="card"><h2 id="ultimoCliente">-</h2><span>Último</span></div>
+</section>
+<section class="formulario">
+<h2>Novo Cliente</h2>
+<form id="clienteForm">
+<div class="grid">
+<input id="nome" placeholder="Nome" required>
+<input id="email" type="email" placeholder="E-mail" required>
+<input id="telefone" placeholder="Telefone">
+<input id="cpf" placeholder="CPF">
+<input id="cidade" placeholder="Cidade">
+<select id="estado"><option value="">UF</option><option>BA</option><option>SP</option><option>RJ</option><option>MG</option></select>
+</div>
+<div class="botoes"><button class="btnSalvar" type="submit">Salvar</button><button class="btnLimpar" type="reset">Limpar</button></div>
+</form>
+</section>
+<section class="lista">
+<div class="topoLista"><h2>Clientes</h2><input id="pesquisa" placeholder="Pesquisar..."></div>
+<p id="semClientes">Nenhum cliente cadastrado.</p>
+<table><thead><tr><th>Nome</th><th>Email</th><th>Telefone</th><th>Cidade</th><th>UF</th><th>Ações</th></tr></thead><tbody id="listaClientes"></tbody></table>
+</section>
+</main>
+<footer>CRUD com Fetch API + CrudCrud</footer>
+<script src="scripts.js"></script>
+</body></html>
