@@ -1,42 +1,266 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cliente Manager</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cliente Manager - CRUD</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-<header><h1>Cliente Manager</h1><p>Sistema de Cadastro de Clientes</p></header>
-<main class="container">
-<section class="cards">
-<div class="card"><h2 id="totalClientes">0</h2><span>Total</span></div>
-<div class="card"><h2 id="clientesHoje">0</h2><span>Hoje</span></div>
-<div class="card"><h2 id="ultimoCliente">-</h2><span>Último</span></div>
-</section>
-<section class="formulario">
-<h2>Novo Cliente</h2>
-<form id="clienteForm">
-<div class="grid">
-<input id="nome" placeholder="Nome" required>
-<input id="email" type="email" placeholder="E-mail" required>
-<input id="telefone" placeholder="Telefone">
-<input id="cpf" placeholder="CPF">
-<input id="cidade" placeholder="Cidade">
-<select id="estado"><option value="">UF</option><option>BA</option><option>SP</option><option>RJ</option><option>MG</option></select>
-</div>
-<div class="botoes"><button class="btnSalvar" type="submit">Salvar</button><button class="btnLimpar" type="reset">Limpar</button></div>
-</form>
-</section>
-<section class="lista">
-<div class="topoLista"><h2>Clientes</h2><input id="pesquisa" placeholder="Pesquisar..."></div>
-<p id="semClientes">Nenhum cliente cadastrado.</p>
-<table><thead><tr><th>Nome</th><th>Email</th><th>Telefone</th><th>Cidade</th><th>UF</th><th>Ações</th></tr></thead><tbody id="listaClientes"></tbody></table>
-</section>
-</main>
-<footer>CRUD com Fetch API + CrudCrud</footer>
-<script src="scripts.js"></script>
-</body></html>
+
+    <header>
+
+        <div class="logo">
+
+            <h1>Cliente Manager</h1>
+
+            <p>Sistema de Cadastro de Clientes</p>
+
+        </div>
+
+    </header>
+
+    <main class="container">
+
+        <!-- Dashboard -->
+
+        <section class="dashboard">
+
+            <div class="card">
+
+                <h2 id="totalClientes">0</h2>
+
+                <span>Total de Clientes</span>
+
+            </div>
+
+            <div class="card">
+
+                <h2 id="clientesHoje">0</h2>
+
+                <span>Cadastrados Hoje</span>
+
+            </div>
+
+            <div class="card">
+
+                <h2 id="ultimoCliente">-</h2>
+
+                <span>Último Cliente</span>
+
+            </div>
+
+        </section>
+
+        <!-- Formulário -->
+
+        <section class="formulario">
+
+            <h2>Novo Cliente</h2>
+
+            <form id="clienteForm">
+
+                <div class="grid">
+
+                    <div>
+
+                        <label for="nome">Nome</label>
+
+                        <input
+                            type="text"
+                            id="nome"
+                            autocomplete="name"
+                            placeholder="Nome completo"
+                            required>
+
+                    </div>
+
+                    <div>
+
+                        <label for="email">E-mail</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            autocomplete="email"
+                            placeholder="email@exemplo.com"
+                            required>
+
+                    </div>
+
+                    <div>
+
+                        <label for="telefone">Telefone</label>
+
+                        <input
+                            type="text"
+                            id="telefone"
+                            placeholder="(73) 99999-9999">
+
+                    </div>
+
+                    <div>
+
+                        <label for="cpf">CPF</label>
+
+                        <input
+                            type="text"
+                            id="cpf"
+                            placeholder="000.000.000-00">
+
+                    </div>
+
+                    <div>
+
+                        <label for="cidade">Cidade</label>
+
+                        <input
+                            type="text"
+                            id="cidade"
+                            placeholder="Cidade">
+
+                    </div>
+
+                    <div>
+
+                        <label for="estado">Estado</label>
+
+                        <select id="estado">
+
+                            <option value="">Selecione</option>
+
+                            <option>AC</option>
+                            <option>AL</option>
+                            <option>AP</option>
+                            <option>AM</option>
+                            <option>BA</option>
+                            <option>CE</option>
+                            <option>DF</option>
+                            <option>ES</option>
+                            <option>GO</option>
+                            <option>MA</option>
+                            <option>MT</option>
+                            <option>MS</option>
+                            <option>MG</option>
+                            <option>PA</option>
+                            <option>PB</option>
+                            <option>PR</option>
+                            <option>PE</option>
+                            <option>PI</option>
+                            <option>RJ</option>
+                            <option>RN</option>
+                            <option>RS</option>
+                            <option>RO</option>
+                            <option>RR</option>
+                            <option>SC</option>
+                            <option>SP</option>
+                            <option>SE</option>
+                            <option>TO</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="botoes">
+
+                    <button class="btnSalvar" type="submit">
+
+                        Salvar Cliente
+
+                    </button>
+
+                    <button class="btnLimpar" type="reset">
+
+                        Limpar
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+        <!-- Lista -->
+
+        <section class="lista">
+
+            <div class="topoLista">
+
+                <h2>Clientes Cadastrados</h2>
+
+                <input
+                    type="search"
+                    id="pesquisa"
+                    placeholder="Pesquisar cliente...">
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Telefone</th>
+                            <th>Cidade</th>
+                            <th>Estado</th>
+                            <th>Ações</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="listaClientes">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div id="semClientes" class="vazio">
+
+                <h3>Nenhum cliente cadastrado</h3>
+
+                <p>Cadastre um novo cliente utilizando o formulário acima.</p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <p>
+
+            Desenvolvido com HTML5, CSS3, JavaScript ES6 Modules, Programação Orientada a Objetos, Fetch API e CrudCrud.
+
+        </p>
+
+    </footer>
+
+    <!-- ES MODULE -->
+
+    <script type="module" src="./js/app.js"></script>
+
+</body>
+
+</html>
